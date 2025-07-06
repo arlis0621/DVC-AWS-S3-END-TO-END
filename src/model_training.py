@@ -70,7 +70,7 @@ def main():
         x_train=train_data.drop(columns=['label'])
         y_train=train_data['label']
         clf=train_model(x_train,y_train,params)
-        save_model(clf,'./models/random_forest_model.pkl')
+        save_model(clf,'./models/model.pkl')
     except Exception as e:
         logger.error(f"Error in main function: {e}")
         raise
