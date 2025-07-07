@@ -6,6 +6,7 @@ logs
 __pycache__/
 *.py[codz]
 *$py.class
+.dvc/tmp/*
 
 # C extensions
 *.so
