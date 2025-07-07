@@ -3,6 +3,8 @@ import pandas as pd
 import os # to make directories
 from sklearn.model_selection import train_test_split
 import logging
+import yaml
+
 
 #logging module
 
@@ -27,6 +29,28 @@ file_handler.setFormatter(formatter)
 
 logger.addHandler(console_handler)
 logger.addHandler(file_handler) 
+
+
+def load_params(params_path):
+    try:
+        with open(params_path, 'r') as file:
+            params = yaml.safe_load(file)
+        logger.debug(f"Loaded params: {params}, type: {type(params)}")  # Add this line
+        return params
+    except Exception as e:
+        logger.error(f"Error loading parameters from {params_path}: {e}")
+        raise
+
+
+
+
+
+
+
+
+
+
+
 
 def load_data(file_path):
     try:
@@ -62,7 +86,9 @@ def save_data(train_data,test_data,data_path):
         raise
 def main():
     try:
-        test_size= 0.2
+        params=load_params('D:/MLOPS/DVC-AWS -S3-END-TO-END/params.yaml')
+        test_size=params['data_ingestion']['test_size'] 
+        
         data_path='D:\MLOPS\DVC-AWS -S3-END-TO-END\experiments\spam.csv'
         df=load_data(data_path)
         final_df=preprocess_data(df)
