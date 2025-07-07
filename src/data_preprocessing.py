@@ -73,7 +73,7 @@ def main():
         logger.debug('Data loaded successfully')
         train_processed_data=preprocess_df(train_data,text_col,target_col)
         test_processed_data=preprocess_df(test_data,text_col,target_col)
-        data_path=os.path.join('./data','processed')
+        data_path=os.path.join('./data','interim')
         os.makedirs(data_path, exist_ok=True)
         train_processed_data.to_csv(os.path.join(data_path,'train_processed.csv'),index=False)
         test_processed_data.to_csv(os.path.join(data_path,'test_processed.csv'),index=False)
